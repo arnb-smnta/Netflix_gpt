@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { checkValidData } from "./utils/validate";
 
 const Login = () => {
   const [SignInForm, setSignInForm] = useState(true);
   const toggleFeature = (e) => {
     e.preventDefault();
     setSignInForm(!SignInForm);
+  };
+  const email = useRef(null);
+  const password = useRef(null);
+  const [errorMsg, seterrorMsg] = useState(null);
+  const validationfn = (e) => {
+    e.preventDefault();
+    console.log(email.current.value);
+    console.log(password.current.value);
+    const message = checkValidData(email.current.value, password.current.value);
+    seterrorMsg(message);
   };
   return (
     <div>
@@ -31,20 +42,32 @@ const Login = () => {
           <input
             type="text"
             placeholder="Enter your Full Name"
-            className="py-2 mx-8 w-10/12 my-4"
+            className="py-2 mx-8 w-10/12 my-4 bg-gray-700"
           />
         )}
         <input
+          ref={email}
           type="text"
           placeholder="UserName or Mobile Number"
-          className="py-2 mx-8 w-10/12 my-4"
+          className="py-2 mx-8 w-10/12 my-4  bg-gray-700"
         />
         <input
+          ref={password}
           type="password"
           placeholder="Password"
-          className="py-2 mx-8 w-10/12 my-4"
+          className="py-2 mx-8 w-10/12 my-4  bg-gray-700"
         />
-        <button className="py-4 mx-8 w-4/12 my-4 bg-red-600 rounded-lg">
+        {errorMsg ? (
+          <p className="text-red-700 py-4 mx-8 font-bold text-lg">
+            {errorMsg} !! Common Man
+          </p>
+        ) : (
+          ""
+        )}
+        <button
+          className="py-4 mx-8 w-4/12 my-4 bg-red-600 rounded-lg"
+          onClick={validationfn}
+        >
           {SignInForm ? "Sign In" : "Sign Up"} god damn it!!
         </button>
 
