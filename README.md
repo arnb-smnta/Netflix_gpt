@@ -32,3 +32,6 @@ Configuring the routing with react router dom (npm i -D react-router-dom)
   - Sign up Form
   - Form Validation
   - useRef Hook
+  - Firebase build
+  - Authentication(Google Firebase) with Web Modular API
+  - Setup Redux store - 1.npm i -D @reduxjs/toolkit 2.npm i react-redux

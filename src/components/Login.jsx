@@ -1,8 +1,14 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "./utils/validate";
-
+import { auth } from "./utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const [SignInForm, setSignInForm] = useState(true);
   const toggleFeature = (e) => {
     e.preventDefault();
@@ -17,7 +23,54 @@ const Login = () => {
     console.log(password.current.value);
     const message = checkValidData(email.current.value, password.current.value);
     seterrorMsg(message);
+
+    if (message) return;
+
+    if (!SignInForm) {
+      //Sign upLogic from firebase Docs
+
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          seterrorMsg("User Succesfully signed up");
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + "  " + errorMessage);
+          seterrorMsg(errorCode + "  " + errorMessage);
+        });
+    } else {
+      //Sign in Code from firebase docs
+
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          seterrorMsg("User succesfully signed in");
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + "  " + errorMessage);
+          seterrorMsg(errorCode + "  " + errorMessage);
+        });
+    }
   };
+
   return (
     <div>
       <Header />
