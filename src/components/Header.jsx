@@ -1,15 +1,48 @@
 import React from "react";
 import { auth } from "./utils/firebase";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "./utils/userSlice";
+
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+        // ...
+
+        //redirect to browse page on signup
+      } else {
+        dispatch(removeUser());
+        // User is signed out
+        // ...
+        navigate("/");
+      }
+    });
+
+    //unsubscribe when component unmounts read firebase docs
+  }, []);
   const handleSignout = (e) => {
     e.preventDefault();
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        navigate("/");
       })
       .catch((error) => {
         // An error happened.

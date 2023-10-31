@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const [SignInForm, setSignInForm] = useState(true);
   const toggleFeature = (e) => {
     e.preventDefault();
@@ -59,8 +59,6 @@ const Login = () => {
               );
               // Profile updated!
               // ...
-
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -90,7 +88,6 @@ const Login = () => {
           const user = userCredential.user;
           console.log(user);
           seterrorMsg("User succesfully signed in");
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;

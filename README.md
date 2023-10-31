@@ -38,3 +38,16 @@ Configuring the routing with react router dom (npm i -D react-router-dom)
   - Authentication(Google Firebase) with Web Modular API
   - Setup Redux store with user slice- 1.npm i -D @reduxjs/toolkit 2.npm i react-redux
   - We will be using TMDB api -its free
+  - BugFix:Signup user display name
+  - Bugfix:if the user is not logged in redirect to home page/if logged in redirect to browse page
+  - unsubscribe to onauth state call back
+  - set fetch from tmdb api and call the api fetch on browse page
+
+# Browse Page Design
+
+- MainContainer
+  - Video Background
+  - Video title
+- Secondary Container
+  - Movielist \*n
+  - Cards \*n
