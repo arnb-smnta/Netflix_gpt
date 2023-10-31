@@ -33,5 +33,8 @@ Configuring the routing with react router dom (npm i -D react-router-dom)
   - Form Validation
   - useRef Hook
   - Firebase build
+  - Deploying our app to production
+  - Creating signup user account
   - Authentication(Google Firebase) with Web Modular API
-  - Setup Redux store - 1.npm i -D @reduxjs/toolkit 2.npm i react-redux
+  - Setup Redux store with user slice- 1.npm i -D @reduxjs/toolkit 2.npm i react-redux
+  - We will be using TMDB api -its free

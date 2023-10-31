@@ -2,12 +2,16 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "./utils/validate";
 import { auth } from "./utils/firebase";
+import { addUser } from "./utils/userSlice";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [SignInForm, setSignInForm] = useState(true);
   const toggleFeature = (e) => {
@@ -16,6 +20,7 @@ const Login = () => {
   };
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
   const [errorMsg, seterrorMsg] = useState(null);
   const validationfn = (e) => {
     e.preventDefault();
@@ -37,9 +42,34 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              // Profile updated!
+              // ...
+
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              console.log(error);
+            });
+
           console.log(user);
           seterrorMsg("User Succesfully signed up");
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -93,6 +123,7 @@ const Login = () => {
           ""
         ) : (
           <input
+            ref={name}
             type="text"
             placeholder="Enter your Full Name"
             className="py-2 mx-8 w-10/12 my-4 bg-gray-700"
