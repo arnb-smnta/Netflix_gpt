@@ -42,6 +42,13 @@ Configuring the routing with react router dom (npm i -D react-router-dom)
   - Bugfix:if the user is not logged in redirect to home page/if logged in redirect to browse page
   - unsubscribe to onauth state call back
   - set fetch from tmdb api and call the api fetch on browse page
+  - Custom hook for now playing movies
+  - Create movieSlice
+  - Update store with movie data
+  - Planning for main video
+  - Fetch Data for trailer video
+  - update store with trailer video data
+  - Embedded the youtube video amd and make it autoplay and mute
 
 # Browse Page Design
 
