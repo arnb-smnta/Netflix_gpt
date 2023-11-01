@@ -8,13 +8,13 @@ const Maincontainer = () => {
   if (!movies) return;
 
   const mainmovie = movies[0];
-  console.log(mainmovie);
-  const { original_title, overview } = mainmovie;
+
+  const { original_title, overview, id } = mainmovie;
 
   return (
     <div>
       <VideoTitle title={original_title} details={overview} />
-      <VideoBackground />
+      <VideoBackground movie_id={id} />
     </div>
   );
 };
