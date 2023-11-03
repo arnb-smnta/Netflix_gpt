@@ -16,3 +16,5 @@ export const Supported_languages = [
   { identifier: "japanese", name: "Japanese" },
   { identifier: "vietnamese", name: "Vietnamese" },
 ];
+
+export const GPTAPI_KEY = "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";

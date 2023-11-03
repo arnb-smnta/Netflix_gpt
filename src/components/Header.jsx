@@ -58,7 +58,7 @@ const Header = () => {
   const handleLang = (e) => {
     dispatch(updatelanguagepreferance(e.target.value));
   };
-  console.log(Gptvalue);
+
   return (
     <div className="flex justify-between absolute px-12 py-2 bg-gradient-to-b from-black z-10 w-screen">
       <div>
