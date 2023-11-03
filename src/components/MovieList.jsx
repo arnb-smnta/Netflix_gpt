@@ -5,10 +5,11 @@ const MovieList = ({ title, movies }) => {
   console.log(movies);
 
   return (
-    <div>
-      <h1>{title}</h1>
-
-      <div className="flex overflow">
+    <div className="px-6">
+      <h1 className="text-white font-bold text-2xl italic py-4 pl-4 ">
+        {title}
+      </h1>
+      <div className="flex overflow-x-scroll">
         <div className="flex">
           {movies.map((movie) => (
             <MovieCard path={movie?.poster_path} />

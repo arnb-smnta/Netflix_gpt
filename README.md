@@ -49,6 +49,10 @@ Configuring the routing with react router dom (npm i -D react-router-dom)
   - Fetch Data for trailer video
   - update store with trailer video data
   - Embedded the youtube video amd and make it autoplay and mute
+  - Make the secondary list
+  - Make the movie list
+  - Make the Movie cards and integrate it in the project
+  - Gpt Search Feature
 
 # Browse Page Design
 
