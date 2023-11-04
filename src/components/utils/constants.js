@@ -17,4 +17,4 @@ export const Supported_languages = [
   { identifier: "vietnamese", name: "Vietnamese" },
 ];
 
-export const GPTAPI_KEY = "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";
+export const GPTAPI_KEY = "";
