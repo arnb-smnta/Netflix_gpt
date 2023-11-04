@@ -10,12 +10,14 @@ const GptMovieSuggestions = () => {
   }
 
   return (
-    <div>
-      <MovieList
-        key={moviename[0]}
-        title={moviename[0]}
-        movies={movieresults[0].results}
-      />
+    <div className="bg-black text-white opacity-80 px-4 mx-4">
+      {moviename.map((movie, index) => (
+        <MovieList
+          key={movie}
+          title={movie}
+          movies={movieresults[index].results}
+        />
+      ))}
     </div>
   );
 };

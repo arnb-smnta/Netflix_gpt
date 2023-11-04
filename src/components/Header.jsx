@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "./utils/userSlice";
-import { GptToggleFeature } from "./utils/gptSlice";
+import { GptToggleFeature, gptAddMovies } from "./utils/gptSlice";
 import { Supported_languages } from "./utils/constants";
 import { updatelanguagepreferance } from "./utils/configSlice";
 
@@ -54,6 +54,7 @@ const Header = () => {
   };
   const GptToggle = () => {
     dispatch(GptToggleFeature());
+    dispatch(gptAddMovies({ moviename: null, movieresults: null }));
   };
   const handleLang = (e) => {
     dispatch(updatelanguagepreferance(e.target.value));
