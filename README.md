@@ -53,6 +53,10 @@ Configuring the routing with react router dom (npm i -D react-router-dom)
   - Make the movie list
   - Make the Movie cards and integrate it in the project
   - Gpt Search Feature
+  - Gpt Api calls
+  - Show the search results in gpt suggetion pages
+  - Memoization
+  - Added .env file on git repo
 
 # Browse Page Design
 

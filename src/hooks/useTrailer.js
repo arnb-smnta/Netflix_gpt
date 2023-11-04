@@ -4,6 +4,7 @@ import { addTrailer } from "../components/utils/movieSlice";
 import { useEffect } from "react";
 
 const useTrailer = (movie_id) => {
+  const trailerdata = useSelector((store) => store.movie.newtrailer);
   const dispatch = useDispatch();
   const fetchTrailer = async () => {
     const data = await fetch(
@@ -22,7 +23,9 @@ const useTrailer = (movie_id) => {
   };
 
   useEffect(() => {
-    fetchTrailer();
+    if (!trailerdata) {
+      fetchTrailer();
+    }
   }, []);
 };
 

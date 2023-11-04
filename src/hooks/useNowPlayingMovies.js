@@ -1,9 +1,10 @@
 import { APIoptions } from "../components/utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPlayingmovie } from "../components/utils/movieSlice";
 import { useEffect } from "react";
 
 const useNowPlayingMovies = () => {
+  const moviedata = useSelector((store) => store.movie.newmovie);
   const dispatch = useDispatch();
   const fetchmovieapi = async () => {
     const data = await fetch(
@@ -16,7 +17,9 @@ const useNowPlayingMovies = () => {
     dispatch(addPlayingmovie(json.results));
   };
   useEffect(() => {
-    fetchmovieapi();
+    if (!moviedata) {
+      fetchmovieapi();
+    }
   }, []);
 };
 
