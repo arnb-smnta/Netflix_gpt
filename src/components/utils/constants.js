@@ -2,8 +2,7 @@ export const APIoptions = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjOGQ4OGFlNTJmNDU1N2ZhMWU4NjQwYzZkZTM2YmI5ZiIsInN1YiI6IjY1NDBmZGMyNmNhOWEwMDBhZDcyMzA2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vq-no4hs8XRnGqj7hb2MG0pLcmk3Y2ZPIX3U9fk_iIk",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDBKEY,
   },
 };
 export const posterPath = "https://image.tmdb.org/t/p/w780";
@@ -17,4 +16,4 @@ export const Supported_languages = [
   { identifier: "vietnamese", name: "Vietnamese" },
 ];
 
-export const GPTAPI_KEY = "";
+export const GPTAPI_KEY = "" + process.env.REACT_APP_GPTAPI_KEY;
